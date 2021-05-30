@@ -1,0 +1,517 @@
+
+
+mysql> UC1 #
+
+mysql> create table address_book(ID int NOT NULL AUTO_INCREMENT PRIMARY KEY, FirstName varchar(25) not null,LastName varchar(25) not null,Address varchar(50) not null,City varchar(25) not null,State varchar(25) not null,PhoneNum varchar(25) not null,ZipCode varchar(25) not null,Email varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| address_book                   |
++--------------------------------+
+1 row in set (0.01 sec)
+
+mysql> describe address_book;
+
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| ID        | int         | NO   | PRI | NULL    | auto_increment |
+| FirstName | varchar(25) | NO   |     | NULL    |                |
+| LastName  | varchar(25) | NO   |     | NULL    |                |
+| Address   | varchar(50) | NO   |     | NULL    |                |
+| City      | varchar(25) | NO   |     | NULL    |                |
+| State     | varchar(25) | NO   |     | NULL    |                |
+| PhoneNum  | varchar(25) | NO   |     | NULL    |                |
+| ZipCode   | varchar(25) | NO   |     | NULL    |                |
+| Email     | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+9 rows in set (0.01 sec)
+
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email)
+    -> VALUES('Rahul', 'Tiwari', '11, XYZ Colony','Kalyan','Maha', 123456, 234567, 'rahul@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address        | City   | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Tiwari   | 11, XYZ Colony | Kalyan | Maha  | 123456   | 234567  | rahul@gmail.com |
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email)
+    -> VALUES('nitin', 'Nautiyal', '11A, XYZ Colony','Wadala','Maha', 345678, 456789, 'nitin@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email)
+    -> VALUES('sahil;', 'Kumar', '11B, XYZ Colony','Kharghar','Maha', 135790, 246800, 'sahil@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email)
+    -> VALUES('Harsh', 'Gathe', '11C, XYZ Colony','Kharghar','Maha', 74855, 751695, 'harsh@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Tiwari   | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |
+|  3 | sahil;    | Kumar    | 11B, XYZ Colony | Kharghar | Maha  | 135790   | 246800  | sahil@gmail.com |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> # UC3
+mysql> update address_book
+    -> SET LastName = 'Damodar'
+    -> WHERE FirstName = 'Rahul';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |
+|  3 | sahil;    | Kumar    | 11B, XYZ Colony | Kharghar | Maha  | 135790   | 246800  | sahil@gmail.com |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql> # UC4
+mysql> DELETE from address_book where FirstName = 'sahil;';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> # UC5
+mysql> select * from address_book where city = Kalyan;
+ERROR 1054 (42S22): Unknown column 'Kalyan' in 'where clause'
+mysql> select * from address_book where City = 'Kalyan';
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address        | City   | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony | Kalyan | Maha  | 123456   | 234567  | rahul@gmail.com |
++----+-----------+----------+----------------+--------+-------+----------+---------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> # UC6
+mysql> select count(*) from address_book ;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> # UC7
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email)
+    -> VALUES('Sahil', 'Gathe', '11C, XYZ Colony','Kalyan','Maha', 74855, 751695, 'harsh@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from address_book where City = 'Kalyan' order by FirstName ;
++----+-----------+----------+-----------------+--------+-------+----------+---------+-----------------+
+| ID | FirstName | LastName | Address         | City   | State | PhoneNum | ZipCode | Email           |
++----+-----------+----------+-----------------+--------+-------+----------+---------+-----------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan | Maha  | 123456   | 234567  | rahul@gmail.com |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan | Maha  | 74855    | 751695  | harsh@gmail.com |
++----+-----------+----------+-----------------+--------+-------+----------+---------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> # UC8
+mysql> ALTER TABLE address_book ADD (AddressBook VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE address_book ADD (Type VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com |             |      |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |             |      |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |             |      |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com |             |      |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+4 rows in set (0.00 sec)
+
+mysql> update address_book
+    -> set AddressBook = 'Contact1'
+    -> where ID = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact1    |      |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com |             |      |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com |             |      |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com |             |      |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+4 rows in set (0.01 sec)
+
+mysql> update address_book
+    -> set AddressBook = 'Contact1'
+    -> where ID = 2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book
+    -> set AddressBook = 'Contact3'
+    -> where ID = 3;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update address_book
+    -> set AddressBook = 'Contact4'
+    -> where ID = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact1    |      |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com | Contact1    |      |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com | Contact4    |      |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com |             |      |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+------+
+4 rows in set (0.00 sec)
+
+mysql> update address_book
+    -> set AddressBook = 'Contact5', Type = 'Family'
+    -> where ID = 5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type   |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact1    |        |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com | Contact1    |        |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com | Contact4    |        |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com | Contact5    | Family |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+4 rows in set (0.01 sec)
+
+mysql> update address_book
+    -> set  Type = 'Family'
+    -> where ID = 1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book
+    -> set  Type = 'Family'
+    -> where ID = 2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book
+    -> set  Type = 'Family'
+    -> where ID = 4;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type   |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact1    | Family |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com | Contact1    | Family |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com | Contact4    | Family |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com | Contact5    | Family |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> # UC9
+mysql> update address_book
+    -> set Type = 'Friend'
+    -> where ID = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Select Type
+    -> from address_book
+    -> update address_book^C
+mysql> Select Type, count(ID)
+    -> from address_book
+    -> group by Type;
++--------+-----------+
+| Type   | count(ID) |
++--------+-----------+
+| Friend |         1 |
+| Family |         3 |
++--------+-----------+
+2 rows in set (0.01 sec)
+
+mysql> # UC10
+mysql> INSERT INTO address_book (FirstName, LastName, Address, City, State, PhoneNum, ZipCode, Email, AddressBook, Type)
+    -> VALUES('Rahul', 'Tiwari', '11, XYZ Colony','Kalyan','Maha', 123456, 234567, 'rahul@gmail.com', 'Contact5', 'Professional');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from address_book;
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------------+
+| ID | FirstName | LastName | Address         | City     | State | PhoneNum | ZipCode | Email           | AddressBook | Type         |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------------+
+|  1 | Rahul     | Damodar  | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact1    | Friend       |
+|  2 | nitin     | Nautiyal | 11A, XYZ Colony | Wadala   | Maha  | 345678   | 456789  | nitin@gmail.com | Contact1    | Family       |
+|  4 | Harsh     | Gathe    | 11C, XYZ Colony | Kharghar | Maha  | 74855    | 751695  | harsh@gmail.com | Contact4    | Family       |
+|  5 | Sahil     | Gathe    | 11C, XYZ Colony | Kalyan   | Maha  | 74855    | 751695  | harsh@gmail.com | Contact5    | Family       |
+|  6 | Rahul     | Tiwari   | 11, XYZ Colony  | Kalyan   | Maha  | 123456   | 234567  | rahul@gmail.com | Contact5    | Professional |
++----+-----------+----------+-----------------+----------+-------+----------+---------+-----------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> # UC11
+mysql> create table People(
+    -> PersonID int NOT NULL primary key, FirstName varchar(50) not null, LastName varchar(50) not null, PhoneNum numeric(10), Email Varchar(50) );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| address_book                   |
+| people                         |
++--------------------------------+
+2 rows in set (0.03 sec)
+
+mysql> create table address(
+    -> PersonID int , Address varchar(50) not null, City varchar(50) not null, ZipCode numeric(6) NOT NULL, State Varchar(50) NOT NULL );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| address                        |
+| address_book                   |
+| people                         |
++--------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> drop table address;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table address(
+    -> PersonID int , Address varchar(50) not null, City varchar(50) not null, ZipCode numeric(6) NOT NULL, State Varchar(50) NOT NULL, Foreign Key (PersonID) references People(PersonID) );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> describe people;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| PersonID  | int           | NO   | PRI | NULL    |       |
+| FirstName | varchar(50)   | NO   |     | NULL    |       |
+| LastName  | varchar(50)   | NO   |     | NULL    |       |
+| PhoneNum  | decimal(10,0) | YES  |     | NULL    |       |
+| Email     | varchar(50)   | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> describe address;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int          | YES  | MUL | NULL    |       |
+| Address  | varchar(50)  | NO   |     | NULL    |       |
+| City     | varchar(50)  | NO   |     | NULL    |       |
+| ZipCode  | decimal(6,0) | NO   |     | NULL    |       |
+| State    | varchar(50)  | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table address_book_specifics (
+    -> PersonID int, AddressBook Varchar(50) NOT NULL, Type Varchar(20) NOT NULL, Foreign Key (PersonID) references People(PersonID));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| address                        |
+| address_book                   |
+| address_book_specifics         |
+| people                         |
++--------------------------------+
+4 rows in set (0.01 sec)
+
+mysql> #UC 12
+
+mysql> INSERT INTO people(PersonID, FirstName, LastName, PhoneNum, Email)
+    -> Values(1, 'Nikhil', Tirpude, 8899000000, 'nik@gmail.com');
+ERROR 1054 (42S22): Unknown column 'Tirpude' in 'field list'
+mysql> INSERT INTO people(PersonID, FirstName, LastName, PhoneNum, Email)
+    -> Values(1, 'Nikhil', 'Tirpude', 8899000000, 'nik@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> Select * from people;
++----------+-----------+----------+------------+---------------+
+| PersonID | FirstName | LastName | PhoneNum   | Email         |
++----------+-----------+----------+------------+---------------+
+|        1 | Nikhil    | Tirpude  | 8899000000 | nik@gmail.com |
++----------+-----------+----------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from address;
+Empty set (0.01 sec)
+
+mysql> INSERT INTO people(PersonID, FirstName, LastName, PhoneNum, Email)
+    -> Values(2, 'Harsh', 'Gathe', 8899000770, 'harsh@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address(PersonID, Address, City, ZipCode, State)
+    -> Values(1, '11, XYZ Colony', 'Mumbai', 112233, 'Maha');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address;
++----------+----------------+--------+---------+-------+
+| PersonID | Address        | City   | ZipCode | State |
++----------+----------------+--------+---------+-------+
+|        1 | 11, XYZ Colony | Mumbai |  112233 | Maha  |
++----------+----------------+--------+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO address(PersonID, Address, City, ZipCode, State)
+    -> Values(2, '12, XYZ Colony', 'Mumbai', 112244, 'Maha');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address(PersonID, Address, City, ZipCode, State)
+    -> Values(1, '11, XYZ Colony', 'Mumbai', 112233, 'Maha');^C
+mysql> INSERT INTO people(PersonID, FirstName, LastName, PhoneNum, Email)
+    -> Values(3, 'Swapnil', 'Tirpude', 8899000550, 'swap@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address(PersonID, Address, City, ZipCode, State)
+    -> Values(3, '13, XYZ Colony', 'Mumbai', 112255, 'Maha');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO address_book_specifics(PersonID, AddressBook, Type)
+    -> Values(1, 'Contact1', 'Family');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO address_book_specifics(PersonID, AddressBook, Type)
+    -> Values(2, 'Contact2', 'Friend');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO address_book_specifics(PersonID, AddressBook, Type)
+    -> Values(3, 'Contact3', 'Professional');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from address_book_specific;
+ERROR 1146 (42S02): Table 'address_book_service.address_book_specific' doesn't exist
+mysql> select * from address_book_specifics;
++----------+-------------+--------------+
+| PersonID | AddressBook | Type         |
++----------+-------------+--------------+
+|        1 | Contact1    | Family       |
+|        2 | Contact2    | Friend       |
+|        3 | Contact3    | Professional |
++----------+-------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> # UC 13
+mysql> Select name
+    -> Select name^C
+mysql> select * from people;
++----------+-----------+----------+------------+-----------------+
+| PersonID | FirstName | LastName | PhoneNum   | Email           |
++----------+-----------+----------+------------+-----------------+
+|        1 | Nikhil    | Tirpude  | 8899000000 | nik@gmail.com   |
+|        2 | Harsh     | Gathe    | 8899000770 | harsh@gmail.com |
+|        3 | Swapnil   | Tirpude  | 8899000550 | swap@gmail.com  |
++----------+-----------+----------+------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from address;
++----------+----------------+--------+---------+-------+
+| PersonID | Address        | City   | ZipCode | State |
++----------+----------------+--------+---------+-------+
+|        1 | 11, XYZ Colony | Mumbai |  112233 | Maha  |
+|        2 | 12, XYZ Colony | Mumbai |  112244 | Maha  |
+|        3 | 13, XYZ Colony | Mumbai |  112255 | Maha  |
++----------+----------------+--------+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> update address
+    -> set City = "Navi Mumbai"
+    -> where PersonId = 2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address;
++----------+----------------+-------------+---------+-------+
+| PersonID | Address        | City        | ZipCode | State |
++----------+----------------+-------------+---------+-------+
+|        1 | 11, XYZ Colony | Mumbai      |  112233 | Maha  |
+|        2 | 12, XYZ Colony | Navi Mumbai |  112244 | Maha  |
+|        3 | 13, XYZ Colony | Mumbai      |  112255 | Maha  |
++----------+----------------+-------------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT FirstName, City FROM people JOIN address ON people.PersonID = address.PersonID WHERE city = 'Navi Mumbai';
++-----------+-------------+
+| FirstName | City        |
++-----------+-------------+
+| Harsh     | Navi Mumbai |
++-----------+-------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) FROM address WHERE state = 'Maha';
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT FirstName From people JOIN address on people.PersonID = address.PersonID WHERE city = 'Mumbai' ORDER BY FirstName;
++-----------+
+| FirstName |
++-----------+
+| Nikhil    |
+| Swapnil   |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Type, COUNT(TYPE) from address_book_specifics GROUP BY Type;
++--------------+-------------+
+| Type         | COUNT(TYPE) |
++--------------+-------------+
+| Family       |           1 |
+| Friend       |           1 |
+| Professional |           1 |
++--------------+-------------+
+3 rows in set (0.01 sec)
+
+mysql>
